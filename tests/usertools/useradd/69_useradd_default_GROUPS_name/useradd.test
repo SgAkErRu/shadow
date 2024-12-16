@@ -7,7 +7,7 @@ cd "$(dirname $0)"
 . ../../../common/config.sh
 . ../../../common/log.sh
 
-log_start "$0" "useradd adds supplementary groups based on the GROUPS field in /etc/deault/useradd"
+log_start "$0" "useradd adds supplementary groups based on the GROUPS field in /etc/default/useradd"
 
 save_config
 
@@ -16,14 +16,22 @@ trap 'log_status "$0" "FAILURE"; restore_config' 0
 
 change_config
 
-printf "Create user foo, with group associations with bin,adm,man,cdrom..."
+echo -n "Create user foo, with group associations with bin,adm,man,cdrom..."
 useradd foo
-printf "OK\n"
+echo "OK"
 
-printf "Check the group file..."
+echo -n "Check the passwd file..."
+../../../common/compare_file.pl data/passwd /etc/passwd
+echo "OK"
+echo -n "Check the group file..."
 ../../../common/compare_file.pl data/group /etc/group
-printf "OK\n"
-
+echo "OK"
+echo -n "Check the shadow file..."
+../../../common/compare_file.pl data/shadow /etc/shadow
+echo "OK"
+echo -n "Check the gshadow file..."
+../../../common/compare_file.pl data/gshadow /etc/gshadow
+echo "OK"
 
 log_status "$0" "SUCCESS"
 restore_config
