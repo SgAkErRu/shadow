@@ -156,6 +156,8 @@ run_test ./newgidmap/01_newgidmap/newgidmap.test
 run_test ./newgidmap/02_newgidmap_relaxed_gid_check/newgidmap.test
 run_test ./libsubid/04_nss/subidnss.test
 run_test ./usertools/62_usermod_remove_supplementary_groups/usermod.test
+run_test ./usertools/useradd/69_useradd_default_GROUPS_name/useradd.test
+run_test ./usertools/useradd/70_useradd-r_default_GROUPS_name/useradd.test
 
 echo
 echo "$succeeded test(s) passed"
