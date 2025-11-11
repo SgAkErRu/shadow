@@ -1552,6 +1552,12 @@ static void process_flags (int argc, char **argv, struct option_flags *flags)
 		if (getdef_bool ("CREATE_HOME")) {
 			mflg = true;
 		}
+	} else {
+		/* Do not automatically add supplements groups for system users. */
+		if (!Gflg && do_grp_update) {
+			free_list(user_groups);
+			do_grp_update = false;
+		}
 	}
 
 	if (Mflg) {
